@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aufrufstatistik</title>
+    <style>
+        * {
+            /* font-size: 2.5em; */
+            /* border-bottom: medium solid red; */
+            /* text-align: center; */
+            margin: 10px 10px;
+            box-sizing: border-box;
+            text-align: center;
+            }
+        form {width:220px}
+        .copy {width:170px;height:2em; margin: 10px 25px; color:blue; text-align: center}
+        label {display: inline-block; width:3em}
+        input {width:4em; text-align: right;margin: 10px 2px}
+        button {width:80px; padding: 3px 0; margin: 10px 2px}
+        footer {text-align: left;}
+    </style>
+</head>
+<body>
+    <form method="post" action="inc/rest_statistik.php">
+        Bereich <br>
+        xxxx Aufrufe xx Gemerkt<br>
+        einkopieren<br>
+        <input class="copy" name="copy" id="copy" type="text" value="">
+        <br>
+        <button class="btn-single" type="button" id="analyse">Zerlegen</button>
+        <br>
+        <label for="aufrufe">Aufrufe:</label>
+        <input name="aufrufe" type="text">
+        <br>
+        <label for="gemerkt">Gemerkt:</label>
+        <input name="gemerkt" type="text">
+        <br>
+        <button type="submit">OK</button>
+        <!-- <div class="btn-row">
+            <button type="reset">Abbruch</button>
+        </div> -->
+    </form>
+    <footer>
+        <a href= index.html>Hauptseite</a>
+    </footer>
+
+    <script>
+        document.querySelector('#analyse').addEventListener('click', analyse);
+        function analyse() {
+            // const text = parseInt(document.getElementById("copy").value);
+            const text = document.getElementById("copy").value;
+            const words = text.split(' ');
+            const aufrufe = words[0];
+            const gemerkt = parseInt(words[1].slice(7));
+            document.querySelector('[name="aufrufe"]').value = aufrufe;
+            document.querySelector('[name="gemerkt"]').value = gemerkt;
+        }
+    </script>
+</body>
+</html>
